@@ -26,10 +26,12 @@ public class IndexServlet extends HttpServlet {
         // Obtém referência para o atributo "usuarioLogado".
         Boolean usuarioLogado = (Boolean) sessaoLogin
                 .getAttribute("usuarioLogado");
+        String nomeUsuario = (String) sessaoLogin.getAttribute("nomeUsuario");
 
         if (usuarioLogado == null || usuarioLogado == false) {
             req.getRequestDispatcher("sistema/login.jsp").forward(req, resp);
         } else {
+            req.setAttribute("username", nomeUsuario);
             req.getRequestDispatcher("sistema/index.jsp").forward(req, resp);
         }
     }

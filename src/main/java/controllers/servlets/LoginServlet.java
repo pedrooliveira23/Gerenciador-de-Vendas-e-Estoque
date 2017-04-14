@@ -29,9 +29,10 @@ public class LoginServlet extends HttpServlet {
         UsuarioBo bo = new UsuarioBo();
 
         sessaolog.setAttribute("usuarioLogado", bo.validar(usuario));
+        sessaolog.setAttribute("nomeUsuario", usuario.getUsername());
 
         if (sessaolog.getAttribute("usuarioLogado").equals(true)) {
-            resp.sendRedirect("sistema");
+;            resp.sendRedirect("sistema");
         } else {
             if (!usuario.getUsername().equals("")
                     || !usuario.getSenha().equals("")) {
