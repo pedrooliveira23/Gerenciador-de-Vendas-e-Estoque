@@ -1,18 +1,23 @@
 package model.beans;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by pedro on 14/04/17.
  */
 @Entity
 public class Usuario {
-    private String username,
-                   senha;
+    @Id
+    private String username;
+    private String senha;
 
     public Usuario(String nomeUsuario, String senha) {
         this.username = nomeUsuario;
         this.senha = senha;
+    }
+
+    public Usuario() {
     }
 
     public String getUsername() {
