@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pedrocorp</groupId>
-  <artifactId>gerenciador-de-vendas-e-estoque</artifactId>
+  <artifactId>gve</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>gerenciador de vendas e estoque Maven Webapp</name>
@@ -41,16 +41,5 @@
   </dependencies>
   <build>
     <finalName>gerenciador de vendas e estoque</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>
