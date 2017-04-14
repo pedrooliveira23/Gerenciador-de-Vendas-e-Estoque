@@ -45,7 +45,23 @@
     </div>
 </nav>
 <div class="container">
-<h1>Bem-vindo, <%=request.getAttribute("username")%></h1>
+    <h1>Cadastro de Produtos</h1>
+    <form class="row">
+        <div class="col s9">
+        <input placeholder="Código" type="text" class="validate" name="codigo">
+        <input placeholder="Nome" type="text" class="validate" name="nome">
+        <input placeholder="Valor Unitário" type="number" class="validate" name="valorUnitario">
+        </div>
+        <div class="col s3">
+        <button class="btn btn-lg btn-primary" type="submit">Pesquisar</button>
+            <br>
+        <button class="btn btn-lg btn-primary" type="submit">Adicionar</button>
+            <br>
+        <button class="btn btn-lg btn-primary" type="submit">Remover</button>
+            <br>
+        <button class="btn btn-lg btn-primary" type="submit">Editar</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>
