@@ -7,7 +7,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
-
+    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
@@ -19,6 +19,12 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script>
+    function mensagem() {
+        var msg = <%=request.getAttribute("mensagem")%>
+            alert(msg);
+    }
+</script>
 <ul id="cadastro" class="dropdown-content">
     <li><a href="cadastroDeProdutos">Produtos</a></li>
     <li><a href="#!">Clientes</a></li>
@@ -53,15 +59,41 @@
         <input placeholder="Valor Unitário" type="number" class="validate" name="valorUnitario">
         </div>
         <div class="col s3">
+            <div class="center-align">
         <button class="btn btn-lg btn-primary" type="submit">Pesquisar</button>
-            <br>
-        <button class="btn btn-lg btn-primary" type="submit">Adicionar</button>
-            <br>
+
+        <button class="btn btn-lg btn-primary" type="submit" name="acao" value="adicionar" onclick="mensagem()">Adicionar</button>
+
         <button class="btn btn-lg btn-primary" type="submit">Remover</button>
-            <br>
+
         <button class="btn btn-lg btn-primary" type="submit">Editar</button>
         </div>
+        </div>
     </form>
+    <div class="row">
+        <table style="font-size: 9pt;" class="col s12">
+            <thead>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Valor Unitário</th>
+            </thead>
+            <tbody>
+            <%
+                java.util.List<model.beans.Produto> lista = (java.util.List<model.beans.Produto>) session
+                        .getAttribute("listaDeProdutos");
+                for (int i = 0; i < lista.size(); i++) {
+            %>
+            <tr>
+                <td><%=lista.get(i).getCodigo()%></td>
+                <td><%=lista.get(i).getNome()%></td>
+                <td><%=lista.get(i).getValorUnitario()%></td>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
