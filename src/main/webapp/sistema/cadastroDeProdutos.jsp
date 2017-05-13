@@ -20,7 +20,7 @@
 <script type="text/javascript" src="js/script.js"></script>
 <ul id="cadastro" class="dropdown-content">
     <li><a href="cadastroDeProdutos">Produtos</a></li>
-    <li><a href="#!">Clientes</a></li>
+    <li><a href="cadastroDeClientes">Clientes</a></li>
 </ul>
 <ul id="usuario" class="dropdown-content">
     <li><a href="logout">Sair</a></li>

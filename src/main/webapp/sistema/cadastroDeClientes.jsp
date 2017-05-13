@@ -7,7 +7,6 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
@@ -45,7 +44,53 @@
     </div>
 </nav>
 <div class="container">
-<h1>Bem-vindo, <%=request.getAttribute("username")%></h1>
+    <h1>Cadastro de Clientes</h1>
+    <p><%=request.getAttribute("mensagem")%></p>
+    <form class="row">
+        <div class="col s9">
+            <input placeholder="Código" type="text" class="validate" name="codigo">
+            <input placeholder="Nome do Estabelecimento" type="text" class="validate" name="nomeEstabelecimento">
+            <input placeholder="Endereço" type="text" class="validate" name="endereco">
+            <input placeholder="Telefone" type="text" class="validate" name="telefone">
+            <input placeholder="Responsável" type="text" class="validate" name="responsavel">
+        </div>
+        <div class="col s3">
+            <div class="center-align">
+                <button class="btn btn-lg btn-primary" style="margin-bottom: 10px;" type="submit" name="acao" value="pesquisar">Pesquisar</button>
+
+                <button class="btn btn-lg btn-primary" type="submit" name="acao" value="adicionar">Adicionar</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <table class="col s12 m12 l12">
+            <thead>
+            <th>Código</th>
+            <th>Nome do Estabelecimento</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>Responsável</th>
+            </thead>
+            <tbody>
+            <%
+                java.util.List<model.entidades.Cliente> lista = (java.util.List<model.entidades.Cliente>) session
+                        .getAttribute("listaDeClientes");
+                for (int i = 0; i < lista.size(); i++) {
+            %>
+            <tr>
+                <td><%=lista.get(i).getCodigo()%></td>
+                <td><%=lista.get(i).getNomeEstabelecimento()%></td>
+                <td><%=lista.get(i).getEndereco()%></td>
+                <td><%=lista.get(i).getTelefone()%></td>
+                <td><%=lista.get(i).getResponsavel()%></td>
+                <td><form><button class="btn btn-lg btn-primary" type="submit" name="acao" value="remover|<%=lista.get(i).getCodigo()%>">Remover</button></form></td>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
