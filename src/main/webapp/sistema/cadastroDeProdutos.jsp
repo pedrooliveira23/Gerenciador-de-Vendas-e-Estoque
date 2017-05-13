@@ -55,7 +55,7 @@
         </div>
         <div class="col s3">
             <div class="center-align">
-        <button class="btn btn-lg btn-primary" type="submit">Pesquisar</button>
+        <button class="btn btn-lg btn-primary" type="submit" name="acao" value="pesquisar">Pesquisar</button>
 
         <button class="btn btn-lg btn-primary" type="submit" name="acao" value="adicionar">Adicionar</button>
 
@@ -66,7 +66,7 @@
         </div>
     </form>
     <div class="row">
-        <table style="font-size: 9pt;" class="col s12">
+        <table class="col s12">
             <thead>
             <th>Código</th>
             <th>Nome</th>

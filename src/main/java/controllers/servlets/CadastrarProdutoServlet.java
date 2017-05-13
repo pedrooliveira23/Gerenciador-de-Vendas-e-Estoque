@@ -35,7 +35,6 @@ public class CadastrarProdutoServlet extends HttpServlet {
 
         if (acao.equals("adicionar")) {
             adicionarProduto(req, produtoBo);
-
         }
 
         req.getRequestDispatcher("sistema/cadastroDeProdutos.jsp").forward(req, resp);
@@ -76,7 +75,7 @@ public class CadastrarProdutoServlet extends HttpServlet {
 
             listarProdutos(req, produtoBo);
         } catch (Exception ex) {
-            req.setAttribute("mensagem", "Ocorreu um erro ao adicionar o produto! Erro: " + ex.getMessage());
+            req.setAttribute("mensagem", "Ocorreu um erro ao adicionar o produto!");
         }
 
     }
