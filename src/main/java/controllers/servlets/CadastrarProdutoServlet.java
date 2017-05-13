@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pedro on 14/04/17.
@@ -22,37 +24,57 @@ public class CadastrarProdutoServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-            HttpSession sessao = req.getSession();
-            ProdutoBo produtoBo = new ProdutoBo();
-            sessao.setAttribute("listaDeProdutos", produtoBo.listar());
+        req.setAttribute("mensagem", "");
 
-            String acaoParam = req.getParameter("acao");
-            String acao = acaoParam == null ? "" : acaoParam;
+        String acaoParam = req.getParameter("acao");
+        String acao = acaoParam == null ? "" : acaoParam;
 
-            if(acao.equals("adicionar")) {
-                adicionarProduto(req, resp, produtoBo);
-                sessao.setAttribute("listaDeProdutos", produtoBo.listar());
-            }
+        ProdutoBo produtoBo = new ProdutoBo();
 
-            req.getRequestDispatcher("sistema/cadastroDeProdutos.jsp").forward(req, resp);
+        listarProdutos(req, produtoBo);
+
+        if (acao.equals("adicionar")) {
+            adicionarProduto(req, produtoBo);
+
         }
 
-    private void adicionarProduto(HttpServletRequest req, HttpServletResponse resp, ProdutoBo produtoBo) {
+        req.getRequestDispatcher("sistema/cadastroDeProdutos.jsp").forward(req, resp);
+    }
+
+    private List<String> getParametros(HttpServletRequest req) {
         String codigoParam = req.getParameter("codigo");
         String nomeParam = req.getParameter("nome");
         String valorUnitarioParam = req.getParameter("valorUnitario");
 
+        String codigo = codigoParam == null ? "" : codigoParam;
+        String nome = codigoParam == null ? "" : nomeParam;
+        String valorUnitario = codigoParam == null ? "" : valorUnitarioParam;
 
+        List<String> listaDeParametros = new ArrayList<String>();
+        listaDeParametros.add(codigo);
+        listaDeParametros.add(nome);
+        listaDeParametros.add(valorUnitario);
+
+        return listaDeParametros;
+    }
+
+    private void listarProdutos(HttpServletRequest req, ProdutoBo produtoBo) {
+        HttpSession sessao = req.getSession();
+        sessao.setAttribute("listaDeProdutos", produtoBo.listar());
+    }
+
+    private void adicionarProduto(HttpServletRequest req, ProdutoBo produtoBo) {
         try {
-            int codigo = Integer.parseInt(codigoParam == null ? "" : codigoParam);
-            String nome = codigoParam == null ? "" : nomeParam;
-            long valorUnitario = Long.parseLong(codigoParam == null ? "" : valorUnitarioParam);
 
-            Produto novoProduto = new Produto(codigo, nome, valorUnitario);
+            List<String> parametros = getParametros(req);
+
+            Produto novoProduto = new Produto(Integer.parseInt(parametros.get(0)), parametros.get(1), Long.parseLong(parametros.get(2)));
 
             produtoBo.adicionar(novoProduto);
 
             req.setAttribute("mensagem", "O produto foi adicionado com sucesso!");
+
+            listarProdutos(req, produtoBo);
         } catch (Exception ex) {
             req.setAttribute("mensagem", "Ocorreu um erro ao adicionar o produto! Erro: " + ex.getMessage());
         }

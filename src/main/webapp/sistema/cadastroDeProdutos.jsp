@@ -19,12 +19,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script>
-    function mensagem() {
-        var msg = <%=request.getAttribute("mensagem")%>
-            alert(msg);
-    }
-</script>
 <ul id="cadastro" class="dropdown-content">
     <li><a href="cadastroDeProdutos">Produtos</a></li>
     <li><a href="#!">Clientes</a></li>
@@ -52,6 +46,7 @@
 </nav>
 <div class="container">
     <h1>Cadastro de Produtos</h1>
+    <p><%=request.getAttribute("mensagem")%></p>
     <form class="row">
         <div class="col s9">
         <input placeholder="Código" type="text" class="validate" name="codigo">
@@ -62,7 +57,7 @@
             <div class="center-align">
         <button class="btn btn-lg btn-primary" type="submit">Pesquisar</button>
 
-        <button class="btn btn-lg btn-primary" type="submit" name="acao" value="adicionar" onclick="mensagem()">Adicionar</button>
+        <button class="btn btn-lg btn-primary" type="submit" name="acao" value="adicionar">Adicionar</button>
 
         <button class="btn btn-lg btn-primary" type="submit">Remover</button>
 
