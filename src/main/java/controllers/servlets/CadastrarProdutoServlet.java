@@ -84,7 +84,7 @@ public class CadastrarProdutoServlet extends HttpServlet {
     }
 
     private void pesquisarProduto(HttpServletRequest req, ProdutoBo produtoBo) {
-        if(produtoBo.pesquisar(getParametros(req)) == null) {
+        if(produtoBo.pesquisar(getParametros(req)) == null || produtoBo.pesquisar(getParametros(req)).size() == 0) {
             listarProdutos(req, produtoBo);
             req.setAttribute("mensagem", "Não foram encontrados nenhum produto com os dados informados!");
         } else {
