@@ -14,7 +14,6 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="create" />
             <!-- C3P0 -->
             <property name="hibernate.connection.provider_class"
                       value="org.hibernate.connection.C3P0ConnectionProvider" />
