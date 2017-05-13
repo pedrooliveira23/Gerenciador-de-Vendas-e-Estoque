@@ -39,6 +39,8 @@ public class CadastrarProdutoServlet extends HttpServlet {
             adicionarProduto(req, produtoBo);
         } else if(acao.equals("pesquisar")) {
             pesquisarProduto(req, produtoBo);
+        } else if(acao.startsWith("remover")){
+            removerProduto(req, produtoBo, acao.substring(8, acao.length()));
         }
 
         req.getRequestDispatcher("sistema/cadastroDeProdutos.jsp").forward(req, resp);
@@ -90,5 +92,13 @@ public class CadastrarProdutoServlet extends HttpServlet {
         } else {
             sessao.setAttribute("listaDeProdutos", produtoBo.pesquisar(getParametros(req)));
         }
+    }
+
+    private void removerProduto(HttpServletRequest req, ProdutoBo produtoBo, String codigo) {
+        List<String> codigos = new ArrayList<String>();
+        codigos.add(codigo);
+        produtoBo.remover(produtoBo.pesquisar(codigos).get(0));
+        listarProdutos(req, produtoBo);
+        req.setAttribute("mensagem", "Produto removido com sucesso!");
     }
 }
