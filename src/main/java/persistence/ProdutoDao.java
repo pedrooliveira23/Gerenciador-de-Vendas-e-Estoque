@@ -1,6 +1,6 @@
 package persistence;
 
-import model.beans.Produto;
+import model.entidades.Produto;
 import utils.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -50,13 +50,38 @@ public class ProdutoDao {
         adicionar(produto);
     }
 
-    public List<Produto> pesquisar(String dadoCadastral) {
+    public List<Produto> pesquisarPorCodigo(String codigo) {
         List<Produto> result = new ArrayList<Produto>();
         try {
-            String jpql = "FROM Produto" +
-                    "WHERE nome LIKE '%" + dadoCadastral + "%'" +
-                    "OR codigo LIKE '%" + dadoCadastral + "%'" +
-                    "OR valorUnitario LIKE '%" + dadoCadastral + "%'";
+            String jpql = "FROM Produto WHERE codigo = " + codigo;
+            result = JpaUtil.getEntityManager()
+                    .createQuery(jpql, Produto.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JpaUtil.closeEntityManager();
+        }
+        return result;
+    }
+
+    public List<Produto> pesquisarPorNome(String nome) {
+        List<Produto> result = new ArrayList<Produto>();
+        try {
+            String jpql = "FROM Produto WHERE nome LIKE " + nome;
+            result = JpaUtil.getEntityManager()
+                    .createQuery(jpql, Produto.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JpaUtil.closeEntityManager();
+        }
+        return result;
+    }
+
+    public List<Produto> pesquisarPorValor(String valor) {
+        List<Produto> result = new ArrayList<Produto>();
+        try {
+            String jpql = "FROM Produto WHERE valorUnitario = " + valor;
             result = JpaUtil.getEntityManager()
                     .createQuery(jpql, Produto.class).getResultList();
         } catch (Exception e) {

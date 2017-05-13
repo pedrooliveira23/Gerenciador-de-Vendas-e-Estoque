@@ -1,6 +1,6 @@
 package controllers.servlets;
 
-import model.beans.Usuario;
+import model.entidades.Usuario;
 import model.bo.UsuarioBo;
 
 import javax.servlet.ServletException;

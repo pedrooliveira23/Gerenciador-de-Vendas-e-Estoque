@@ -1,6 +1,6 @@
 package persistence;
 
-import model.beans.Usuario;
+import model.entidades.Usuario;
 import utils.JpaUtil;
 
 import java.util.ArrayList;

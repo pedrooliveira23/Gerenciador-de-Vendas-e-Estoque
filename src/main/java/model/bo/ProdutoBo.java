@@ -1,6 +1,6 @@
 package model.bo;
 
-import model.beans.Produto;
+import model.entidades.Produto;
 import persistence.ProdutoDao;
 
 import java.util.List;
@@ -19,13 +19,14 @@ public class ProdutoBo {
         dao.remover(produto);
     }
 
-    public void editar(Produto produto) {
-        Produto antigo = dao.pesquisar(new Integer(produto.getCodigo()).toString()).get(0);
-        dao.editar(produto, antigo);
-    }
-
-    public List<Produto> pesquisar(String dadoCadastral) {
-        return dao.pesquisar(dadoCadastral);
+    public List<Produto> pesquisar(List<String> atributos) {
+        if(!atributos.get(0).equals("")) {
+            return dao.pesquisarPorCodigo(atributos.get(0));
+        } else if(!atributos.get(1).equals("")) {
+            return dao.pesquisarPorNome(atributos.get(1));
+        } else if(!atributos.get(2).equals("")) {
+            return dao.pesquisarPorValor(atributos.get(2));
+        }
     }
 
     public List<Produto> listar() {

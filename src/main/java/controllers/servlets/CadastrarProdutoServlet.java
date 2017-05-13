@@ -1,6 +1,6 @@
 package controllers.servlets;
 
-import model.beans.Produto;
+import model.entidades.Produto;
 import model.bo.ProdutoBo;
 
 import javax.servlet.ServletException;
@@ -35,6 +35,8 @@ public class CadastrarProdutoServlet extends HttpServlet {
 
         if (acao.equals("adicionar")) {
             adicionarProduto(req, produtoBo);
+        } else if(acao.equals("pesquisar")) {
+            pesquisarProduto(req, produtoBo);
         }
 
         req.getRequestDispatcher("sistema/cadastroDeProdutos.jsp").forward(req, resp);
@@ -78,5 +80,10 @@ public class CadastrarProdutoServlet extends HttpServlet {
             req.setAttribute("mensagem", "Ocorreu um erro ao adicionar o produto!");
         }
 
+    }
+
+    private void pesquisarProduto(HttpServletRequest req, ProdutoBo produtoBo) {
+        produtoBo.pesquisar(getParametros(req));
+        listarProdutos(req, produtoBo);
     }
 }

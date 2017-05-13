@@ -1,6 +1,6 @@
 package model.bo;
 
-import model.beans.Usuario;
+import model.entidades.Usuario;
 import persistence.UsuarioDao;
 
 /**

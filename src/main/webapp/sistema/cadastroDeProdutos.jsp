@@ -7,7 +7,6 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
@@ -55,26 +54,23 @@
         </div>
         <div class="col s3">
             <div class="center-align">
-        <button class="btn btn-lg btn-primary" type="submit" name="acao" value="pesquisar">Pesquisar</button>
+                <button class="btn btn-lg btn-primary" style="margin-bottom: 10px;" type="submit" name="acao" value="pesquisar">Pesquisar</button>
 
-        <button class="btn btn-lg btn-primary" type="submit" name="acao" value="adicionar">Adicionar</button>
-
-        <button class="btn btn-lg btn-primary" type="submit">Remover</button>
-
-        <button class="btn btn-lg btn-primary" type="submit">Editar</button>
-        </div>
+                <button class="btn btn-lg btn-primary" type="submit" name="acao" value="adicionar">Adicionar</button>
+            </div>
         </div>
     </form>
     <div class="row">
-        <table class="col s12">
+        <table class="col s12 m12 l12">
             <thead>
             <th>Código</th>
             <th>Nome</th>
             <th>Valor Unitário</th>
+            <th>Operações</th>
             </thead>
             <tbody>
             <%
-                java.util.List<model.beans.Produto> lista = (java.util.List<model.beans.Produto>) session
+                java.util.List<model.entidades.Produto> lista = (java.util.List<model.entidades.Produto>) session
                         .getAttribute("listaDeProdutos");
                 for (int i = 0; i < lista.size(); i++) {
             %>
@@ -82,6 +78,7 @@
                 <td><%=lista.get(i).getCodigo()%></td>
                 <td><%=lista.get(i).getNome()%></td>
                 <td><%=lista.get(i).getValorUnitario()%></td>
+                <td><form><button class="btn btn-lg btn-primary" type="submit" name="acao" value="remover|<%=lista.get(i).getCodigo()%>">Remover</button></form></td>
             </tr>
             <%
                 }
