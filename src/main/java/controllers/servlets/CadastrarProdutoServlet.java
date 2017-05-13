@@ -52,8 +52,8 @@ public class CadastrarProdutoServlet extends HttpServlet {
         String valorUnitarioParam = req.getParameter("valorUnitario");
 
         String codigo = codigoParam == null ? "" : codigoParam;
-        String nome = codigoParam == null ? "" : nomeParam;
-        String valorUnitario = codigoParam == null ? "" : valorUnitarioParam;
+        String nome = nomeParam == null ? "" : nomeParam;
+        String valorUnitario = valorUnitarioParam == null ? "" : valorUnitarioParam;
 
         List<String> listaDeParametros = new ArrayList<String>();
         listaDeParametros.add(codigo);
@@ -97,8 +97,13 @@ public class CadastrarProdutoServlet extends HttpServlet {
     private void removerProduto(HttpServletRequest req, ProdutoBo produtoBo, String codigo) {
         List<String> codigos = new ArrayList<String>();
         codigos.add(codigo);
-        produtoBo.remover(produtoBo.pesquisar(codigos).get(0));
-        listarProdutos(req, produtoBo);
-        req.setAttribute("mensagem", "Produto removido com sucesso!");
+        try {
+            produtoBo.remover(produtoBo.pesquisar(codigos).get(0));
+            listarProdutos(req, produtoBo);
+            req.setAttribute("mensagem", "Produto removido com sucesso!");
+        } catch (Exception ex) {
+            req.setAttribute("mensagem", "Ocorreu um erro ao remover o produto!");
+        }
+
     }
 }
