@@ -3,6 +3,7 @@ package model.bo;
 import model.entidades.Produto;
 import persistence.ProdutoDao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class ProdutoBo {
         } else if(!atributos.get(2).equals("")) {
             return dao.pesquisarPorValor(atributos.get(2));
         }
+        return null;
     }
 
     public List<Produto> listar() {

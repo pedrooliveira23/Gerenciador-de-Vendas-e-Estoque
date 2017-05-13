@@ -54,8 +54,8 @@ public class ProdutoDao {
         List<Produto> result = new ArrayList<Produto>();
         try {
             String jpql = "FROM Produto WHERE codigo = " + codigo;
-            result = JpaUtil.getEntityManager()
-                    .createQuery(jpql, Produto.class).getResultList();
+            return JpaUtil.getEntityManager()
+                        .createQuery(jpql, Produto.class).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -67,7 +67,7 @@ public class ProdutoDao {
     public List<Produto> pesquisarPorNome(String nome) {
         List<Produto> result = new ArrayList<Produto>();
         try {
-            String jpql = "FROM Produto WHERE nome LIKE " + nome;
+            String jpql = "FROM Produto WHERE nome LIKE '" + nome + "'";
             result = JpaUtil.getEntityManager()
                     .createQuery(jpql, Produto.class).getResultList();
         } catch (Exception e) {

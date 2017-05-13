@@ -19,10 +19,12 @@ import java.util.List;
 @WebServlet(value = "/cadastroDeProdutos")
 public class CadastrarProdutoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    private HttpSession sessao;
     @SuppressWarnings("unchecked")
     protected void service(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
+        sessao = req.getSession();
 
         req.setAttribute("mensagem", "");
 
@@ -60,7 +62,6 @@ public class CadastrarProdutoServlet extends HttpServlet {
     }
 
     private void listarProdutos(HttpServletRequest req, ProdutoBo produtoBo) {
-        HttpSession sessao = req.getSession();
         sessao.setAttribute("listaDeProdutos", produtoBo.listar());
     }
 
@@ -83,7 +84,11 @@ public class CadastrarProdutoServlet extends HttpServlet {
     }
 
     private void pesquisarProduto(HttpServletRequest req, ProdutoBo produtoBo) {
-        produtoBo.pesquisar(getParametros(req));
-        listarProdutos(req, produtoBo);
+        if(produtoBo.pesquisar(getParametros(req)) == null) {
+            listarProdutos(req, produtoBo);
+            req.setAttribute("mensagem", "Não foram encontrados nenhum produto com os dados informados!");
+        } else {
+            sessao.setAttribute("listaDeProdutos", produtoBo.pesquisar(getParametros(req)));
+        }
     }
 }
