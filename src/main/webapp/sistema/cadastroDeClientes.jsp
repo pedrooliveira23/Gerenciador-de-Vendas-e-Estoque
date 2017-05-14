@@ -18,7 +18,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<ul id="cadastro" class="dropdown-content">
+<ul id="estoque" class="dropdown-content">    <li><a href="gerenciarEstoque">Gerenciar</a></li></ul><ul id="cadastro" class="dropdown-content">
     <li><a href="cadastroDeProdutos">Produtos</a></li>
     <li><a href="cadastroDeClientes">Clientes</a></li>
 </ul>
@@ -31,13 +31,13 @@
         <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Vendas<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Estoque<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="estoque">Estoque<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button" href="#!" data-activates="cadastro">Cadastro<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button" href="#!" data-activates="usuario">Conta<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
 <!--        <ul class="side-nav" id="mobile">
             <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Vendas<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Estoque<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="estoque">Estoque<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button" href="#!" data-activates="cadastro">Cadastro<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button" href="#!" data-activates="usuario">Conta<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul> -->
